@@ -8,6 +8,7 @@ const tintColorDark = "#fff";
 
 export const Colors = {
   light: {
+    pickerItemBackgroundColor: "#cccccc",
     activeIcon: "#8abffa",
     text: "#11181C",
     background: "#fff",
