@@ -3,6 +3,7 @@ import { Colors } from "@/shared/constants/Colors";
 
 const modelEditingStyles = StyleSheet.create({
   container: {
+    marginBottom: 20,
     marginLeft: 10,
   },
   picker: {
