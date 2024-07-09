@@ -1,8 +1,8 @@
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { FC } from "react";
 import { Constructor } from "@/widgets/constructor/ui";
 import { styles } from "./homeStyles";
-import { SplashScreen } from "@/entities/splashScreen/ui/SplashScreen";
+import { SplashScreen } from "@/entities/splashScreen/ui";
 
 const HomePage: FC = () => {
   return (
