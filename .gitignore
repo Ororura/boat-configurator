@@ -9,7 +9,7 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
-
+src/shared/assets/models/boat.fbx
 # macOS
 .DS_Store
 
