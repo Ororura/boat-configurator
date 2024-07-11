@@ -1,16 +1,17 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { SelectedParams } from "@/shared/types";
 import { WritableDraft } from "immer";
+import { initConst } from "@/shared/constants";
 
 const initialState: SelectedParams = {
-  displacement: "40000 - 60000",
-  GTEType: "Перспективная ГЭУ",
-  speed: "До 27 узлов",
-  cruisingRange: "До 8000 миль",
-  deckConfiguration: "Плоская",
-  numberOfSuperstructures: "Одна",
-  typeOfStarter: "Не применяется",
-  mainDeckConfiguration: "Угловая",
+  displacement: initConst.displacement,
+  GTEType: initConst.GTEType,
+  speed: initConst.speed,
+  cruisingRange: initConst.cruisingRange,
+  deckConfiguration: initConst.deckConfiguration,
+  numberOfSuperstructures: initConst.numberOfSuperstructures,
+  typeOfStarter: initConst.typeOfStarter,
+  mainDeckConfiguration: initConst.mainDeckConfiguration,
 };
 
 export const sharedSlice = createSlice({

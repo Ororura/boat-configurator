@@ -4,11 +4,9 @@
     "slug": "my-app",
     "version": "1.0.0",
     "orientation": "landscape",
-    "icon": "./shared/assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
-      "image": "./shared/assets/images/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,20 +15,15 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./shared/assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./shared/assets/images/favicon.png"
+      "output": "static"
     },
     "plugins": [
       "expo-router"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    }
+    ]
   }
 }

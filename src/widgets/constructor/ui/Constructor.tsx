@@ -1,13 +1,13 @@
 import { FC } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 import { styles } from "./styles";
-import { CanvasEntity } from "@/entities/canvas/ui/CanvasEntity";
 import { ModelEditing } from "@/features/modelEditing/ui";
+import { GLViewEntity } from "@/entities/canvas/ui/GLViewEntity";
 
 const Constructor: FC = () => {
   return (
     <View style={styles.container}>
-      <CanvasEntity />
+      <GLViewEntity />
       <ModelEditing />
     </View>
   );

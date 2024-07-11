@@ -9,4 +9,8 @@ type SelectedParams = {
   mainDeckConfiguration: string;
 };
 
-export type { SelectedParams };
+type ConstantsTypes = {
+  initialSlice: SelectedParams;
+};
+
+export type { SelectedParams, ConstantsTypes };
