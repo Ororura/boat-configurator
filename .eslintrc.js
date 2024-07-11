@@ -34,5 +34,27 @@ module.exports = {
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react/prop-types": "off",
     "@typescript-eslint/no-var-requires": "off",
+    "react/no-unknown-property": [
+      "error",
+      {
+        ignore: [
+          "intensity",
+          "position",
+          "castShadow",
+          "shadow-mapSize-width",
+          "shadow-mapSize-height",
+          "shadow-camera-near",
+          "shadow-camera-far",
+          "shadow-camera-top",
+          "shadow-camera-right",
+          "shadow-camera-bottom",
+          "shadow-camera-left",
+          "angle",
+          "penumbra",
+          "object",
+          "receiveShadow"
+        ],
+      },
+    ],
   },
 };

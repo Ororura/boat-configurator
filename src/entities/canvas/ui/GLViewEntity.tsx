@@ -1,50 +1,51 @@
-import React, { FC } from "react";
-import { StyleSheet, View, ViewStyle } from "react-native";
-import { GLView, ExpoWebGLRenderingContext } from "expo-gl";
-import { Renderer, THREE } from "expo-three";
+import React, { Suspense } from "react";
+import { StyleSheet, View } from "react-native";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, useFBX } from "@react-three/drei";
 import { Asset } from "expo-asset";
-import { FBXLoader } from "three/examples/jsm/loaders/FBXLoader"; // Import FBXLoader instead of OBJLoader
 
-export const GLViewEntity: FC = () => {
-  const onContextCreate = async (gl: ExpoWebGLRenderingContext) => {
-    const { drawingBufferWidth: width, drawingBufferHeight: height } = gl;
-    const renderer = new Renderer({ gl });
-    renderer.setSize(width, height);
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
-    camera.position.z = 15;
-    camera.position.y = 20;
-
-    const asset = Asset.fromModule(require("../../../shared/assets/models/boat.fbx"));
-    await asset.downloadAsync();
-    const loader = new FBXLoader();
-
-    loader.load(asset.localUri || "", (object) => {
-      scene.add(object);
-    });
-
-    const animate = () => {
-      requestAnimationFrame(animate);
-      renderer.render(scene, camera);
-      gl.endFrameEXP();
-    };
-    animate();
-  };
-
+export const GLViewEntity = () => {
   return (
     <View style={styles.container}>
-      <GLView style={styles.glView} onContextCreate={onContextCreate} />
+      <Canvas style={styles.glView} camera={{ position: [40, 90, 50] }} shadows>
+        <Suspense fallback={null}>
+          <Scene />
+        </Suspense>
+        <OrbitControls />
+        <ambientLight intensity={0.5} />
+        <spotLight position={[10, 10, 10]} angle={0.3} penumbra={1} intensity={2} castShadow />
+        <spotLight position={[-10, -10, -10]} angle={0.3} penumbra={1} intensity={2} castShadow />
+        <directionalLight
+          position={[0, 10, 0]}
+          intensity={1.5}
+          castShadow
+          shadow-mapSize-width={1024}
+          shadow-mapSize-height={1024}
+          shadow-camera-near={1}
+          shadow-camera-far={10}
+          shadow-camera-top={10}
+          shadow-camera-right={10}
+          shadow-camera-bottom={-10}
+          shadow-camera-left={-10}
+        />
+      </Canvas>
     </View>
   );
 };
 
-interface Styles {
-  container: ViewStyle;
-  glView: ViewStyle;
-}
+const Scene = () => {
+  const fbx = useFBX(Asset.fromModule(require("../../../shared/assets/models/boat.fbx")).uri);
 
-const styles = StyleSheet.create<Styles>({
+  return (
+    <group>
+      <primitive object={fbx} receiveShadow="" castShadow="">
+        <meshStandardMaterial color="#808080" />
+      </primitive>
+    </group>
+  );
+};
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
