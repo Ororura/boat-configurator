@@ -1,15 +1,21 @@
 import React, { Suspense } from "react";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useFBX } from "@react-three/drei";
 import { Asset } from "expo-asset";
+import { GLViewEntityStyles } from "./GLViewEntityStyles";
 
 export const GLViewEntity = () => {
+  const fbx = useFBX(Asset.fromModule(require("../../../shared/assets/models/boat.fbx")).uri);
   return (
-    <View style={styles.container}>
-      <Canvas style={styles.glView} camera={{ position: [40, 90, 50] }} shadows>
+    <View style={GLViewEntityStyles.container}>
+      <Canvas style={GLViewEntityStyles.glView} camera={{ position: [40, 90, 50] }} shadows>
         <Suspense fallback={null}>
-          <Scene />
+          <group>
+            <primitive object={fbx} receiveShadow="" castShadow="">
+              <meshStandardMaterial color="#808080" />
+            </primitive>
+          </group>
         </Suspense>
         <OrbitControls />
         <ambientLight intensity={0.5} />
@@ -32,24 +38,3 @@ export const GLViewEntity = () => {
     </View>
   );
 };
-
-const Scene = () => {
-  const fbx = useFBX(Asset.fromModule(require("../../../shared/assets/models/boat.fbx")).uri);
-
-  return (
-    <group>
-      <primitive object={fbx} receiveShadow="" castShadow="">
-        <meshStandardMaterial color="#808080" />
-      </primitive>
-    </group>
-  );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  glView: {
-    flex: 1,
-  },
-});
